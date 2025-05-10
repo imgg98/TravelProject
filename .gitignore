@@ -1,0 +1,37 @@
+# Maven target directory
+/target/
+
+# IntelliJ IDEA specific files
+.idea/
+*.iml
+
+# Eclipse specific files
+.classpath
+.project
+.settings/
+
+# VS Code settings
+.vscode/
+
+# macOS system file
+.DS_Store
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# Maven Wrapper
+!.mvn/wrapper/maven-wrapper.jar
+
+# Build directories in unusual places (rare)
+!**/src/main/**/target/
+!**/src/test/**/target/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# OPTIONAL: ignore test result files or temp files if you create any
+*.log
+*.tmp

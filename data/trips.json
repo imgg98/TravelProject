@@ -1,0 +1,35 @@
+[ {
+  "name" : "Summer Vacation",
+  "destination" : "Madrid, Spain",
+  "startDate" : "2025-08-01",
+  "endDate" : "2025-08-14",
+  "organizers" : [ {
+    "firstName" : "Giulio",
+    "lastName" : "Giangrande",
+    "taxCode" : "YDCCTRF654E",
+    "email" : "giulio.giangrande@example.com",
+    "phoneNumber" : "333 1234567",
+    "birthDate" : "1990-01-01",
+    "password" : "password123",
+    "role" : "ORGANIZER"
+  } ],
+  "participants" : [ {
+    "firstName" : "Scott",
+    "lastName" : "McFratm",
+    "taxCode" : "SGTTBHU875K",
+    "email" : "scott.mcfratm@example.com",
+    "phoneNumber" : "333 8765097",
+    "birthDate" : "1984-05-09",
+    "password" : "fratm123",
+    "role" : "PARTICIPANT"
+  }, {
+    "firstName" : "Pasquale",
+    "lastName" : "Mazzocchi",
+    "taxCode" : "GSRCRER543L",
+    "email" : "pasquale.mazzocchi@example.com",
+    "phoneNumber" : "340 5477854",
+    "birthDate" : "1990-03-12",
+    "password" : "cantante123",
+    "role" : "PARTICIPANT"
+  } ]
+} ]
