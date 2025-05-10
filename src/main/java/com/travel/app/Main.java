@@ -5,6 +5,7 @@ import com.travel.model.Person;
 import com.travel.model.Role;
 import com.travel.model.Trip;
 import com.travel.service.TripService;
+import com.travel.service.UserService;
 
 import static com.travel.config.AppConfig.USERS_FILE;
 import static com.travel.config.AppConfig.TRIPS_FILE;
@@ -15,6 +16,9 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+
+        // Crea una nuova istanza di UserService
+        UserService userService = new UserService();
 
         // Variabili locali
         List<Person> users = JacksonUtils.loadUsers(USERS_FILE);
@@ -123,6 +127,7 @@ public class Main {
     }
 
 
+    // Metodo per eseguire il login tramite UserService
     public static Person login(List<Person> users, Scanner scanner) {
         int attempts = 0;
         int maxAttempts = 3;

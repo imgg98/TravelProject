@@ -37,7 +37,7 @@ public class TripService {
         String endDate = scanner.nextLine().trim();
 
         // Crea un nuovo viaggio
-        Trip trip = new Trip(name, destination, startDate, endDate);
+        Trip trip = new Trip(name, destination, startDate.toString(), endDate.toString());
 
         // Aggiungi il currentUser come organizer
         trip.getOrganizers().add(currentUser);
@@ -61,10 +61,14 @@ public class TripService {
         trip.setDestination(scanner.nextLine().trim());
 
         System.out.print("Enter new start date (YYYY-MM-DD): ");
-        trip.setStartDate(scanner.nextLine().trim());
+        LocalDate newStartDate = readValidDate(scanner);
+        trip.setStartDate(newStartDate.toString());
 
         System.out.print("Enter new end date (YYYY-MM-DD): ");
-        trip.setEndDate(scanner.nextLine().trim());
+        LocalDate newEndDate = readValidDate(scanner);
+        trip.setEndDate(newEndDate.toString());
+
+        System.out.println("✅ Trip updated successfully.");
     }
 
     // Metodo per visualizzare tutti i viaggi
@@ -164,13 +168,13 @@ public class TripService {
         System.out.println("❌ User not found in participants or organizers.");
     }
 
-    /*public static LocalDate readValidDate(Scanner scanner) {
+    private LocalDate readValidDate(Scanner scanner) {
         while (true) {
             try {
-                return LocalDate.parse(scanner.nextLine());
+                return LocalDate.parse(scanner.nextLine().trim());
             } catch (DateTimeParseException e) {
                 System.out.print("❌ Invalid date format, please use YYYY-MM-DD: ");
             }
         }
-    }*/
+    }
 }
