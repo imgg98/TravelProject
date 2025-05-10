@@ -46,17 +46,18 @@ TravelProject è un'applicazione Java che consente la gestione di viaggi, partec
 
 TravelProject/
 ├── src/
-│   └── main/
-│       ├── java/
-│       │   └── com/travel/
-│       │       ├── app/         # Classe Main
-│       │       ├── config/      # AppConfig.java
-│       │       ├── model/       # Entità come Trip, Person, ecc.
-│       │       └── service/     # Logica applicativa (TripService, UserService)
-│       └── resources/
-│           └── data/
-│               ├── users.json   # Dati utente di esempio
-│               └── trips.json   # Dati viaggio di esempio
+│ └── main/
+│ ├── java/
+│ │ └── com/
+│ │ └── travel/
+│ │ ├── app/ # Classe Main
+│ │ ├── config/ # AppConfig.java
+│ │ ├── model/ # Entità come Trip, Person, ecc.
+│ │ └── service/ # Logica applicativa (TripService, UserService)
+│ └── resources/
+│ └── data/
+│ ├── users.json # Dati utente di esempio
+│ └── trips.json # Dati viaggio di esempio
 ├── pom.xml
 ├── .gitignore
 ├── LICENSE
