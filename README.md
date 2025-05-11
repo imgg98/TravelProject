@@ -84,6 +84,7 @@ TravelProject/
 
    // Esempio di login
    ```
+   UserService userService = new UserService();
    Person user = userService.login("partecipante@esempio.com", "password123", users);
    ```
 2. Creazione di un viaggio da parte di un organizzatore
@@ -92,8 +93,9 @@ TravelProject/
 
    // Esempio di creazione viaggio
    ```
-   Trip newTrip = new Trip("Roma", "2025-06-15", "2025-06-20");
-   tripService.createTrip(newTrip);
+   TripService tripService = new TripService(trips);
+   Trip newTrip = tripService.createTrip(currentUser, scanner);
+   trips.add(newTrip);
    ```
 3. Modifica dei dettagli di un viaggio
 

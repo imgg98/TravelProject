@@ -7,7 +7,6 @@ import com.travel.model.Trip;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -36,7 +35,6 @@ public class TripService {
         System.out.print("Enter end date (YYYY-MM-DD): ");
         String endDate = scanner.nextLine().trim();
 
-        // Crea un nuovo viaggio
         Trip trip = new Trip(name, destination, startDate.toString(), endDate.toString());
 
         // Aggiungi il currentUser come organizer

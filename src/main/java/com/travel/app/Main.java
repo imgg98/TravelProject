@@ -30,7 +30,7 @@ public class Main {
         System.out.println("Welcome to TravelProject!");
 
         // Procede con il login
-        Person currentUser = login(users, scanner);
+        Person currentUser = login(users, scanner, userService);
         if (currentUser == null) {
             System.out.println("❌ Login failed. Exiting...");
             return;
@@ -128,7 +128,7 @@ public class Main {
 
 
     // Metodo per eseguire il login tramite UserService
-    public static Person login(List<Person> users, Scanner scanner) {
+    public static Person login(List<Person> users, Scanner scanner, UserService userService) {
         int attempts = 0;
         int maxAttempts = 3;
 
@@ -145,11 +145,10 @@ public class Main {
                 continue;
             }
 
-            for (Person user : users) {
-                if (user.getEmail().equalsIgnoreCase(email) && user.getPassword().equals(password)) {
-                    System.out.println("✅ Login successful.");
-                    return user;
-                }
+            Person user = userService.login(email, password, users);
+            if (user != null) {
+                System.out.println("✅ Login successful.");
+                return user;
             }
 
             System.out.println("❌ Invalid credentials.");
