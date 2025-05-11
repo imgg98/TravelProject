@@ -69,14 +69,32 @@ public class TripService {
         System.out.println("✅ Trip updated successfully.");
     }
 
-    // Metodo per visualizzare tutti i viaggi
-    public void displayTrips() {
-        if (trips.isEmpty()) {
-            System.out.println("❌ No trips available.");
-            return;
-        }
+    // Metodo per visualizzare i viaggi e i membri per un determinato utente
+    public void displayTripsForParticipant(Person currentUser) {
+        boolean hasTrips = false;
         for (Trip trip : trips) {
-            System.out.println("Trip: " + trip.getName() + ", Destination: " + trip.getDestination());
+            // Verifica se l'utente è un partecipante o un organizzatore del viaggio
+            if (trip.getParticipants().contains(currentUser) || trip.getOrganizers().contains(currentUser)) {
+                hasTrips = true;
+                System.out.println("Trip: " + trip.getName() + ", Destination: " + trip.getDestination());
+
+                // Visualizza gli organizzatori
+                System.out.println("  Organizers:");
+                for (Person organizer : trip.getOrganizers()) {
+                    System.out.println("    - " + organizer.getFirstName() + " " + organizer.getLastName());
+                }
+
+                // Visualizza i partecipanti
+                System.out.println("  Participants:");
+                for (Person participant : trip.getParticipants()) {
+                    System.out.println("    - " + participant.getFirstName() + " " + participant.getLastName());
+                }
+                System.out.println();
+            }
+        }
+
+        if (!hasTrips) {
+            System.out.println("❌ You are not associated with any trips.");
         }
     }
 

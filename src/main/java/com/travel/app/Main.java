@@ -1,5 +1,6 @@
 package com.travel.app;
 
+import com.travel.config.AppConfig;
 import com.travel.model.JacksonUtils;
 import com.travel.model.Person;
 import com.travel.model.Role;
@@ -45,8 +46,7 @@ public class Main {
                 System.out.println("3. 📅 Show trips and roles");
                 System.out.println("4. 👥 Add participants or organizers");
                 System.out.println("5. 🗑️ Remove users");
-                System.out.println("6. 📄 View trips");
-                System.out.println("7. 💾 Save and exit");
+                System.out.println("6. 💾 Save and exit");
                 System.out.print("Choose an option: ");
             } else if (currentUser.getRole() == Role.PARTICIPANT) {
                 System.out.println("\n📋 Participant Menu");
@@ -59,54 +59,80 @@ public class Main {
 
             switch (choice) {
                 case "1":
-                    Trip currentTrip = tripService.createTrip(currentUser, scanner);
-                    trips.add(currentTrip);
-                    System.out.println("✅ Trip \"" + currentTrip.getName() + "\" created successfully.");
+                    if (currentUser.getRole() == Role.ORGANIZER) {
+                        Trip currentTrip = tripService.createTrip(currentUser, scanner);
+                        trips.add(currentTrip);
+                        System.out.println("✅ Trip \"" + currentTrip.getName() + "\" created successfully.");
+                    } else if (currentUser.getRole() == Role.PARTICIPANT) {
+                        tripService.displayTripsForParticipant(currentUser);
+                    }
                     break;
+
                 case "2":
-                    System.out.print("Enter the name of the trip you want to modify: ");
-                    String tripNameToModify = scanner.nextLine();
-                    Trip tripToModify = tripService.findTripByName(tripNameToModify);
-                    if (tripToModify != null) {
-                        tripService.modifyTrip(tripToModify, scanner);
-                        System.out.println("✅ Trip modified successfully!");
-                    } else {
-                        System.out.println("❌ Trip not found.");
+                    if (currentUser.getRole() == Role.ORGANIZER) {
+                        System.out.print("Enter the name of the trip you want to modify: ");
+                        String tripNameToModify = scanner.nextLine();
+                        Trip tripToModify = tripService.findTripByName(tripNameToModify);
+                        if (tripToModify != null) {
+                            tripService.modifyTrip(tripToModify, scanner);
+                            System.out.println("✅ Trip modified successfully!");
+                        } else {
+                            System.out.println("❌ Trip not found.");
+                        }
+                    } else if (currentUser.getRole() == Role.PARTICIPANT) {
+                        JacksonUtils.saveUsers(users, USERS_FILE);
+                        JacksonUtils.saveTrips(trips, TRIPS_FILE);
+                        System.out.println("💾 Data saved. Goodbye!");
+                        running = false;
                     }
                     break;
+
                 case "3":
-                    tripService.displayTrips();
+                    if (currentUser.getRole() == Role.ORGANIZER) {
+                        tripService.displayTripsForParticipant(currentUser);
+                    } else {
+                        System.out.println("❌ Invalid option.");
+                    }
                     break;
+
                 case "4":
-                    System.out.print("Enter the name of the trip to add participants or organizers: ");
-                    String tripNameToAddParticipants = scanner.nextLine();
-                    Trip tripToAddParticipants = tripService.findTripByName(tripNameToAddParticipants);
-                    if (tripToAddParticipants != null) {
-                        tripService.addParticipantsOrOrganizers(tripToAddParticipants, scanner, users, trips,
-                                USERS_FILE, TRIPS_FILE);
+                    if (currentUser.getRole() == Role.ORGANIZER) {
+                        System.out.print("Enter the name of the trip to add participants or organizers: ");
+                        String tripNameToAddParticipants = scanner.nextLine();
+                        Trip tripToAddParticipants = tripService.findTripByName(tripNameToAddParticipants);
+                        if (tripToAddParticipants != null) {
+                            tripService.addParticipantsOrOrganizers(tripToAddParticipants, scanner, users, trips,
+                                    USERS_FILE, TRIPS_FILE);
+                        } else {
+                            System.out.println("❌ Trip not found.");
+                        }
                     } else {
-                        System.out.println("❌ Trip not found.");
+                        System.out.println("❌ Invalid option.");
                     }
                     break;
+
                 case "5":
-                    System.out.print("Enter the name of the trip to remove users: ");
-                    String tripNameToRemoveUsers = scanner.nextLine();
-                    Trip tripToRemoveUsers = tripService.findTripByName(tripNameToRemoveUsers);
-                    if (tripToRemoveUsers != null) {
-                        tripService.removeUserFromTrip(tripToRemoveUsers, scanner);
+                    if (currentUser.getRole() == Role.ORGANIZER) {
+                        System.out.print("Enter the name of the trip to remove users: ");
+                        String tripNameToRemoveUsers = scanner.nextLine();
+                        Trip tripToRemoveUsers = tripService.findTripByName(tripNameToRemoveUsers);
+                        if (tripToRemoveUsers != null) {
+                            tripService.removeUserFromTrip(tripToRemoveUsers, scanner);
+                        } else {
+                            System.out.println("❌ Trip not found.");
+                        }
                     } else {
-                        System.out.println("❌ Trip not found.");
+                        System.out.println("❌ Invalid option.");
                     }
                     break;
+
                 case "6":
-                    tripService.displayTrips();
-                    break;
-                case "7":
-                    JacksonUtils.saveUsers(users, "users.json");
-                    JacksonUtils.saveTrips(trips, "trips.json");
+                    JacksonUtils.saveUsers(users, USERS_FILE);
+                    JacksonUtils.saveTrips(trips, TRIPS_FILE);
                     System.out.println("💾 Data saved. Goodbye!");
                     running = false;
                     break;
+
                 default:
                     System.out.println("❌ Invalid option.");
             }
@@ -121,7 +147,7 @@ public class Main {
                     "giulio.giangrande@example.com", "333 1234567" , LocalDate.parse("1990-01-01"),
                     "password123", Role.ORGANIZER);
             users.add(defaultUser);
-            JacksonUtils.saveUsers(users, "users.json");
+            JacksonUtils.saveUsers(users, AppConfig.USERS_FILE);
             System.out.println("Default user created.");
         }
     }

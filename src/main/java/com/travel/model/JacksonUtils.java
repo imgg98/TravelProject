@@ -86,7 +86,6 @@ public class JacksonUtils {
 
             // Salva i dati nel file JSON con una formattazione leggibile
             mapper.writerWithDefaultPrettyPrinter().writeValue(file, users);
-            System.out.println("Users saved to " + filePath);
         } catch (IOException e) {
             System.err.println("⚠️ Error saving users to " + filePath + ": " + e.getMessage());
         }
@@ -134,7 +133,6 @@ public class JacksonUtils {
 
             // Scrive i dati nel file JSON
             mapper.writerWithDefaultPrettyPrinter().writeValue(file, trips);
-            LOGGER.info("Trips saved to " + tripsFile);
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, "Error saving trips to file", e);
         }

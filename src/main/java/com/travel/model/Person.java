@@ -2,6 +2,7 @@ package com.travel.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Person implements Serializable {
     private String firstName;
@@ -116,4 +117,18 @@ public class Person implements Serializable {
     public void setRole(Role role) {
         this.role = role;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return Objects.equals(email, person.email);  // confronto via email o un altro campo univoco
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(email);  // hashCode basato su email
+    }
+
 }
