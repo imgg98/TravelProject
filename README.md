@@ -82,7 +82,6 @@ TravelProject/
 
    Un partecipante può accedere al sistema inserendo le proprie credenziali (email e password). Dopo il login, potrà visualizzare i viaggi a cui è stato aggiunto.
 
-   // Esempio di login
    ```
    UserService userService = new UserService();
    Person user = userService.login("partecipante@esempio.com", "password123", users);
@@ -91,7 +90,6 @@ TravelProject/
 
    Un organizzatore autenticato può creare un nuovo viaggio specificando nome, destinazione, data di inizio e fine.
 
-   // Esempio di creazione viaggio
    ```
    TripService tripService = new TripService(trips);
    Trip newTrip = tripService.createTrip(currentUser, scanner);
@@ -101,7 +99,6 @@ TravelProject/
 
    L'organizzatore può aggiornare la destinazione o le date di un viaggio esistente.
 
-   // Esempio di modifica viaggio
    ```
    tripService.modifyTrip(trip, scanner);
    ```
@@ -109,7 +106,6 @@ TravelProject/
 
    È possibile aggiungere nuovi utenti a un viaggio, specificando se devono essere partecipanti od organizzatori.
 
-   // Esempio di aggiunta utente
    ```
    tripService.addParticipantsOrOrganizers(trip, scanner, users, trips, USERS_FILE, TRIPS_FILE);
    ```
@@ -117,7 +113,6 @@ TravelProject/
 
    Si possono rimuovere partecipanti od organizzatori da un viaggio esistente.
 
-   // Esempio di rimozione utente
    ```
    tripService.removeUserFromTrip(trip, scanner);
    ```

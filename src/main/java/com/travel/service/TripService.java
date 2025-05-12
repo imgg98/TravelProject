@@ -14,7 +14,7 @@ import static com.travel.config.AppConfig.USERS_FILE;
 import static com.travel.config.AppConfig.TRIPS_FILE;
 
 public class TripService {
-    private List<Trip> trips;
+    private final List<Trip> trips;
 
     // Costruttore che accetta la lista di viaggi
     public TripService(List<Trip> trips) {
@@ -35,7 +35,7 @@ public class TripService {
         System.out.print("Enter end date (YYYY-MM-DD): ");
         String endDate = scanner.nextLine().trim();
 
-        Trip trip = new Trip(name, destination, startDate.toString(), endDate.toString());
+        Trip trip = new Trip(name, destination, startDate, endDate);
 
         // Aggiungi il currentUser come organizer
         trip.getOrganizers().add(currentUser);
@@ -156,14 +156,11 @@ public class TripService {
         System.out.print("Enter last name of the user to remove: ");
         String lastName = scanner.nextLine().trim();
 
-        Person toRemove = null;
-
         // Cerca nei partecipanti
         for (Person participant : trip.getParticipants()) {
             if (participant.getFirstName().equalsIgnoreCase(firstName) &&
                     participant.getLastName().equalsIgnoreCase(lastName)) {
-                toRemove = participant;
-                trip.getParticipants().remove(toRemove);
+                trip.getParticipants().remove(participant);
                 System.out.println("✅ User removed from participants.");
                 return;
             }
@@ -173,8 +170,7 @@ public class TripService {
         for (Person organizer : trip.getOrganizers()) {
             if (organizer.getFirstName().equalsIgnoreCase(firstName) &&
                     organizer.getLastName().equalsIgnoreCase(lastName)) {
-                toRemove = organizer;
-                trip.getOrganizers().remove(toRemove);
+                trip.getOrganizers().remove(organizer);
                 System.out.println("✅ User removed from organizers.");
                 return;
             }
