@@ -99,8 +99,7 @@ public class TripService {
     }
 
     // Metodo per aggiungere partecipanti/organizzatori
-    public void addParticipantsOrOrganizers(Trip trip, Scanner scanner, List<Person> users, List<Trip> trips,
-                                            String usersFile, String tripsFile) {
+    public void addParticipantsOrOrganizers(Trip trip, Scanner scanner, List<Person> users, List<Trip> trips) {
         System.out.print("Do you want to add a participant or an organizer? (p/o): ");
         String type = scanner.nextLine().trim().toLowerCase();
 

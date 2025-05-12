@@ -23,7 +23,7 @@ public class Main {
 
         // Variabili locali
         List<Person> users = JacksonUtils.loadUsers(USERS_FILE);
-        initializeUsersIfEmpty(users, USERS_FILE);
+        initializeUsersIfEmpty(users);
 
         List<Trip> trips = JacksonUtils.loadTrips(TRIPS_FILE);
         TripService tripService = new TripService(trips);
@@ -101,8 +101,7 @@ public class Main {
                         String tripNameToAddParticipants = scanner.nextLine();
                         Trip tripToAddParticipants = tripService.findTripByName(tripNameToAddParticipants);
                         if (tripToAddParticipants != null) {
-                            tripService.addParticipantsOrOrganizers(tripToAddParticipants, scanner, users, trips,
-                                    USERS_FILE, TRIPS_FILE);
+                            tripService.addParticipantsOrOrganizers(tripToAddParticipants, scanner, users, trips);
                         } else {
                             System.out.println("❌ Trip not found.");
                         }
@@ -140,7 +139,7 @@ public class Main {
     }
 
     // Metodo per inizializzare gli utenti se il file è vuoto
-    public static void initializeUsersIfEmpty(List<Person> users, String filename) {
+    public static void initializeUsersIfEmpty(List<Person> users) {
         if (users.isEmpty()) {
             System.out.println("No users found. Creating a default user...");
             Person defaultUser = new Person("Giulio", "Giangrande", "YDCCTRF654E",
