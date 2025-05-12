@@ -69,15 +69,35 @@ TravelProject/
 
 • ✅ File di esempio JSON (users.json, trips.json)
 
+## 📋 Analisi dei Requisiti (testuale)
+
+## Requisiti Funzionali
+
+• Il sistema deve consentire la registrazione e il login degli utenti (organizzatori e partecipanti).
+
+• Gli organizzatori devono poter:
+
+   • creare un nuovo viaggio specificando nome, destinazione, date di inizio e fine;
+
+   • modificare o eliminare viaggi esistenti;
+
+   • aggiungere o rimuovere partecipanti e altri organizzatori da un viaggio.
+
+• I partecipanti devono poter:
+
+   • visualizzare i viaggi a cui sono stati invitati.
+
+• Il sistema deve permettere il salvataggio e il caricamento di utenti e viaggi in formato JSON.
+
 ## Requisiti Non Funzionali
 
-• Prestazioni: Il progetto è progettato per gestire un numero limitato di viaggi e partecipanti. Per usi in ambienti con alta concorrenza, è consigliato l'ottimizzazione delle operazioni di salvataggio e caricamento dei dati.
+• Prestazioni: Il progetto è sviluppato per gestire un numero limitato di viaggi e partecipanti. Per usi in ambienti con alta concorrenza, è consigliato l'ottimizzazione delle operazioni di salvataggio e caricamento dei dati.
 
 • Sicurezza: Al momento, l'autenticazione è gestita tramite login di base. Per un'applicazione di produzione, si consiglia di implementare una gestione più sicura delle credenziali, come l'uso di token di autenticazione e la protezione dei dati sensibili.
 
 • Scalabilità: Il sistema supporta facilmente l'aggiunta di nuove funzionalità, ma il salvataggio e il caricamento di dati JSON possono diventare lenti con un numero maggiore di utenti o viaggi. Per scenari di maggiore carico, l'uso di un database relazionale o NoSQL sarebbe vantaggioso.
 
-## Casi d'uso
+## 📚 Casi d'uso
 1. Login di un partecipante
 
    Un partecipante può accedere al sistema inserendo le proprie credenziali (email e password). Dopo il login, potrà visualizzare i viaggi a cui è stato aggiunto.
