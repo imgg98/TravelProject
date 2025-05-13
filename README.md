@@ -77,17 +77,17 @@ TravelProject/
 
 • Gli organizzatori devono poter:
 
-   • creare un nuovo viaggio specificando nome, destinazione, date di inizio e fine;
+      • creare nuovi viaggi, specificando nome, destinazione, data di inizio e fine;
 
-   • modificare o eliminare viaggi esistenti;
+      • modificare o eliminare viaggi esistenti;
 
-   • aggiungere o rimuovere partecipanti e altri organizzatori da un viaggio.
+      • gestire i partecipanti e altri organizzatori associati a ciascun viaggio (aggiunta e rimozione).
 
 • I partecipanti devono poter:
 
-   • visualizzare i viaggi a cui sono stati invitati.
+      • visualizzare i viaggi a cui sono stati invitati.
 
-• Il sistema deve permettere il salvataggio e il caricamento di utenti e viaggi in formato JSON.
+Infine, il sistema deve garantire il salvataggio e caricamento persistente dei dati relativi a utenti e viaggi tramite file in formato JSON.
 
 ## Requisiti Non Funzionali
 
